@@ -17,12 +17,30 @@ class BSTNode:
 
     # Insert the given value into the tree
     def insert(self, value):
-        pass
+        #find value
+        if value < self.value:
+        
+        if value > self.value:
+
+        #add to tree (similar to add_to_head)
 
     # Return True if the tree contains the value
     # False if it does not
     def contains(self, target):
-        pass
+        if self.value == target:
+            return True
+
+        if target < self.value:
+            if self.left is not None:
+                return self.left.contains(target)
+
+        else:
+            if self.left is not None:
+                return self.right.contains(target)
+        
+        return False
+        
+
 
     # Return the maximum value found in the tree
     def get_max(self):

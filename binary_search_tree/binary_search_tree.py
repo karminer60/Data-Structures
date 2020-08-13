@@ -18,9 +18,7 @@ class BSTNode:
     # Insert the given value into the tree
     def insert(self, value):
         #find value
-        if self.value == value:
-            return
-
+       
         if value < self.value:
             if self.left is not None:
                 self.left.insert(value)
@@ -35,7 +33,7 @@ class BSTNode:
                 self.right = BSTNode(value)
 
 
-        #add to tree (similar to add_to_head)
+       
 
     # Return True if the tree contains the value
     # False if it does not
@@ -68,16 +66,17 @@ class BSTNode:
 
     # Call the function `fn` on the value of each node
     def for_each(self, fn):
-        #Recursive
-        #call fn on self.value
-        #check if self has a left child
+        # Recursive 
+        # call fn on self.value 
+        fn(self.value)
+        # # check if self has a left child 
         if self.left:
-            #call 'for_each' on the left child, passing in the fn
-            self.left.for_each(fn)
-        #check if self has a rightchild
+        #     # call `for_each` on the left child, passing in the fn 
+             self.left.for_each(fn)
+        # # check if self has a right child 
         if self.right:
-            #call 'for_each' on the right child, passing in the fn
-            self.right.for_each(fn)
+        #     # call `for_each` on the right child, passing in the fn 
+             self.right.for_each(fn)
 
     # Part 2 -----------------------
 
@@ -109,7 +108,7 @@ class BSTNode:
 
 """
 This code is necessary for testing the `print` methods
-"""
+
 bst = BinarySearchTree(1)
 
 bst.insert(8)
@@ -130,3 +129,4 @@ print("in order")
 bst.in_order_dft()
 print("post order")
 bst.post_order_dft()  
+"""

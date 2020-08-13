@@ -85,11 +85,11 @@ class DoublyLinkedList:
         # check if the linked list is empty 
         if self.head is None and self.tail is None:
             return None
-        
+        self.length -= 1
         # check if the linked list has only one node 
         if self.head == self.tail:
             # store the node we're going to remove's value 
-            val = self.head.get_value()
+            val = self.head.value
             self.head = None
             self.tail = None
             return val
@@ -97,7 +97,7 @@ class DoublyLinkedList:
         # otherwise, the linked list has more than one Node 
         else:
             # store the last Node's value in a nother variable so we can return it 
-            val = self.tail.get_value()
+            val = self.tail.value
             # we need to set `self.tail` to the second-to-last Node
             # the only way we can do this, is by traversing the whole linked list
             # from the beginning 
@@ -108,14 +108,14 @@ class DoublyLinkedList:
             current = self.head 
 
             # keep iterating until the node after `current` is the tail
-            while current.get_next() != self.tail:
+            while current.next != self.tail:
                 # keep iterating 
-                current = current.get_next()
+                current = current.next()
 
             # set `self.tail` to `current`
             self.tail = current
             # set the new tail's `next_node` to None
-            self.tail.set_next(None) 
+            self.tail.next = None
             return val
 
             

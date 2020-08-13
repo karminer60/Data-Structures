@@ -18,9 +18,22 @@ class BSTNode:
     # Insert the given value into the tree
     def insert(self, value):
         #find value
+        if self.value == value:
+            return
+
         if value < self.value:
-        
-        if value > self.value:
+            if self.left is not None:
+                self.left.insert(value)
+            else: 
+                self.left = BSTNode(value)
+                
+ 
+        else:
+            if self.right is not None:
+                self.right.insert(value)
+            else: 
+                self.right = BSTNode(value)
+
 
         #add to tree (similar to add_to_head)
 
@@ -35,7 +48,7 @@ class BSTNode:
                 return self.left.contains(target)
 
         else:
-            if self.left is not None:
+            if self.right is not None:
                 return self.right.contains(target)
         
         return False

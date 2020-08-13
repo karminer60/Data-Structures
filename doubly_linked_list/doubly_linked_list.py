@@ -53,7 +53,41 @@ class DoublyLinkedList:
     Returns the value of the removed Node.
     """
     def remove_from_head(self):
-        pass
+        # check if the linked list is empty 
+        if self.head is None and self.tail is None:
+            return None
+        self.length -= 1
+        # check if the linked list has only one node 
+        if self.head == self.tail:
+            # store the node we're going to remove's value 
+            val = self.tail.value
+            self.head = None
+            self.tail = None
+            return val
+
+        # otherwise, the linked list has more than one Node 
+        else:
+            # store the last Node's value in a nother variable so we can return it 
+            val = self.head.value
+            # we need to set `self.tail` to the second-to-last Node
+            # the only way we can do this, is by traversing the whole linked list
+            # from the beginning 
+            
+            # starting from the head, we'll traverse down to the second-to-last Node 
+            # init another reference to keep track of where we are in the linked 
+            # list as we're iterating 
+            current = self.tail
+
+            # keep iterating until the node after `current` is the tail
+            while current.next != self.head:
+                # keep iterating 
+                current = current.next()
+
+            # set `self.tail` to `current`
+            self.head = current
+            # set the new tail's `next_node` to None
+            self.head.next = None
+            return val
             
     """
     Wraps the given value in a ListNode and inserts it 
@@ -124,22 +158,27 @@ class DoublyLinkedList:
     List and inserts it as the new head node of the List.
     """
     def move_to_front(self, node):
-        pass
+        self.delete(node)
+        self.add_to_head(node.value)
+
         
     """
     Removes the input node from its current spot in the 
     List and inserts it as the new tail node of the List.
     """
     def move_to_end(self, node):
-        pass
+        self.delete(node)
+        self.add_to_tail(node.value)
 
     """
     Deletes the input node from the List, preserving the 
     order of the other elements of the List.
     """
     def delete(self, node):
+        
         if node is None:
             return
+        self.length -= 1
         if node.prev is None and node.next is None:
             self.head = None
             self.tail = None
@@ -179,7 +218,7 @@ class DoublyLinkedList:
             #update the largest value
                 max_value = current.value
             #update current to point to the next node
-                current = current.next 
+            current = current.next 
         #return the largest value
         
-        #return max_value
+        return max_value

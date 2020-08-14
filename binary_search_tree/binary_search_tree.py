@@ -100,53 +100,45 @@ class BSTNode:
     def bft_print(self):
         #First in first out
         #levels
-       from collections import deque
-​
-        q = deque()
-        q.append(self)
-​
-        while len(q) > 0:
-            current_node = q.popleft()
-​
-            # check if this node has children 
-            if current_node.left:
-                q.append(current_node.left)
-            if current_node.right:
-                q.append(current_node.righ)
-​
-            fn(current_node.value)
+        
+        queue = [self]
+        while queue:
+            cur_node = queue[0]
+            queue = queue[1:]
+            print(cur_node.value)
+            if cur_node.left:
+                queue.append(cur_node.left)
+            if cur_node.right:
+                queue.append(cur_node.right)
+        
+       
 
     # Print the value of every node, starting with the given node, 
     # in an iterative depth first traversal
     def dft_print(self):
-         #depth first, from top to bottom
+        #depth first, from top to bottom
         #Last in First out
         # # Depth-First Iterative 
         # # how do we achieve the same ordering that recursion gave us for free? 
         # # use a stack to achieve the same ordering 
-         stack = [] 
+        stack = [] 
         # # add the root node to our stack 
-         stack.append(self)
-​
+        stack.append(self)
         # # continue popping from our stack so long as there are nodes in it 
-         while len(stack) > 0:
-             current_node = stack.pop()
-​
+        while len(stack) > 0:
+            current_node = stack.pop()
         #     # check if this node has children 
-             if current_node.right:
-                 stack.append(current_node.right)
-             if current_node.left:
-                 stack.append(current_node.left)
-            
-             fn(current_node.value)
-
+            if current_node.right:
+                stack.append(current_node.right)
+            if current_node.left:
+                stack.append(current_node.left)         
+            print(current_node.value)
     # Stretch Goals -------------------------
     # Note: Research may be required
 
     # Print Pre-order recursive DFT
     def pre_order_dft(self):
         pass
-
     # Print Post-order recursive DFT
     def post_order_dft(self):
         pass

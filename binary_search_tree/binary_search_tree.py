@@ -100,15 +100,21 @@ class BSTNode:
     def bft_print(self):
         #First in first out
         #levels
-        nodes = []
-        stack = [root]
-        while stack:
-            cur_node = stack[0]
-            stack = stack[1:]
-            nodes.append(cur_node)
-        for child in cur_node.get_children():
-            stack.append(child)
-        return nodes
+       from collections import deque
+​
+        q = deque()
+        q.append(self)
+​
+        while len(q) > 0:
+            current_node = q.popleft()
+​
+            # check if this node has children 
+            if current_node.left:
+                q.append(current_node.left)
+            if current_node.right:
+                q.append(current_node.righ)
+​
+            fn(current_node.value)
 
     # Print the value of every node, starting with the given node, 
     # in an iterative depth first traversal

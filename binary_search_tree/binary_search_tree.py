@@ -85,20 +85,54 @@ class BSTNode:
     def in_order_print(self):
         #depth first, from top to bottom
         #Last in First out
-        pass
+
+        if self.left:
+            self.left.in_order_print()
+        print(self.value)    
+        if self.right:
+            self.right.in_order_print()
+        
+        
+
 
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
     def bft_print(self):
         #First in first out
-        pass
+        #levels
+        nodes = []
+        stack = [root]
+        while stack:
+            cur_node = stack[0]
+            stack = stack[1:]
+            nodes.append(cur_node)
+        for child in cur_node.get_children():
+            stack.append(child)
+        return nodes
 
-    # Print the value of every node, starting with the given node,
+    # Print the value of every node, starting with the given node, 
     # in an iterative depth first traversal
     def dft_print(self):
          #depth first, from top to bottom
         #Last in First out
-        pass
+        # # Depth-First Iterative 
+        # # how do we achieve the same ordering that recursion gave us for free? 
+        # # use a stack to achieve the same ordering 
+         stack = [] 
+        # # add the root node to our stack 
+         stack.append(self)
+​
+        # # continue popping from our stack so long as there are nodes in it 
+         while len(stack) > 0:
+             current_node = stack.pop()
+​
+        #     # check if this node has children 
+             if current_node.right:
+                 stack.append(current_node.right)
+             if current_node.left:
+                 stack.append(current_node.left)
+            
+             fn(current_node.value)
 
     # Stretch Goals -------------------------
     # Note: Research may be required
